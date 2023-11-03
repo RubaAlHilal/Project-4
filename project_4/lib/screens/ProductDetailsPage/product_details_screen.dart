@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:project_4/models/watch_model.dart';
+import 'package:project_4/widgets/custom_button.dart';
 import 'components/details_page_main_widget.dart';
 import 'components/details_screen_app_bar.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({super.key});
+  const ProductDetailsScreen({super.key, required this.watch});
 
+  final Watch watch;
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
@@ -14,9 +17,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      bottomNavigationBar: CustomButton(
+        onPressedFunc: () {},
+        content: "Add to Cart",
+        hasIcon: true,
+      ),
       appBar: detailsScreenAppBar(),
-      body: const SingleChildScrollView(
-          scrollDirection: Axis.vertical, child: DetailsPageMainWidget()),
+      body: DetailsPageMainWidget(watch: widget.watch),
     );
   }
 }
