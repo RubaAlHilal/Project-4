@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
-
-import '../../../widgets/custom_button.dart';
+import 'package:project_4/models/watch_model.dart';
+import 'package:project_4/widgets/circle_icon.dart';
 import 'product_background_widget.dart';
 
 class DetailsPageMainWidget extends StatelessWidget {
   const DetailsPageMainWidget({
     super.key,
+    required this.watch,
   });
-
+  final Watch watch;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ProductBackgroundWidget(),
+        ProductBackgroundWidget(
+          watch: watch,
+        ),
         Padding(
-          padding: EdgeInsets.all(25),
+          padding: const EdgeInsets.all(25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -27,34 +30,44 @@ class DetailsPageMainWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Zeitwerk Date",
-                            style: TextStyle(
-                                fontSize: 24, color: Color(0xff294475), fontFamily: 'DMSerifText'),
+                            watch.name,
+                            style: const TextStyle(
+                                fontSize: 24,
+                                color: Color(0xff294475),
+                                fontFamily: 'DMSerifText'),
                           ),
                           Text(
-                            "₹3050",
-                            style: TextStyle(fontSize: 24, fontFamily: 'DMSerifText'),
+                            "₹${watch.price}",
+                            style: const TextStyle(
+                                fontSize: 24, fontFamily: 'DMSerifText'),
                           ),
                         ],
                       ),
-                      Spacer(),
-                      Text("+"),
-                      Text("1"),
-                      Text("-"),
+                      const Spacer(),
+                      CircleIcon(iconData: Icons.remove, onPressedFunc: () {}),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      const Text(
+                        //quantity
+                        "1",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      CircleIcon(iconData: Icons.add, onPressedFunc: () {}),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
-                    "product details ...........................................................................................................................",
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                    watch.description,
+                    overflow: TextOverflow.clip,
+                    style: const TextStyle(fontSize: 16, color: Colors.grey),
                   ),
-                  CustomButton(
-                    onPressedFunc: () {},
-                    content: "Add to Cart",
-                    hasIcon: true,
-                  )
                 ],
               ),
             ],

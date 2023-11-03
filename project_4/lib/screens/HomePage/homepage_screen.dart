@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:project_4/data/global_data.dart';
+import 'package:project_4/data/watch_data_set.dart';
+import 'package:project_4/models/watch_model.dart';
 
 import 'components/app_bar_widget.dart';
 import 'components/category_component.dart';
-import 'components/product_widget.dart';
+import 'components/product_list_widget.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({super.key});
@@ -12,6 +15,15 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
+  @override
+  void initState() {
+    for (var element in watches) {
+      watchesList.add(Watch.fromJson(element));
+      print(watchesList[0]);
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +36,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
           children: [
             Text(
               "Hello",
-              style: TextStyle(fontSize: 28, color: Color(0xff294475), fontFamily: 'DMSerifText'),
+              style: TextStyle(
+                  fontSize: 28,
+                  color: Color(0xff294475),
+                  fontFamily: 'DMSerifText'),
             ),
             Text(
               "Choose Your Top Brands",
@@ -38,16 +53,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
               height: 20,
             ),
             SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  ProductWidget(),
-                  SizedBox(
-                    width: 30,
-                  ),
-                ],
-              ),
-            )
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    ProductListWidget(),
+                  ],
+                )),
           ],
         ),
       ),
