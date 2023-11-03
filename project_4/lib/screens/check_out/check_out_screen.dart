@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_4/widgets/payment_details.dart';
 import 'package:project_4/widgets/custom_app_bar.dart';
 
+import '../../widgets/custom_button.dart';
 import 'widgets/address_row.dart';
 import 'widgets/payment_method.dart';
 import 'widgets/title_row.dart';
@@ -12,7 +13,14 @@ class CheckOutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(title: "Checkout", context: context, hasAction: true),
+      appBar: customAppBar(
+        title: "Checkout",
+        context: context,
+        hasAction: true,
+        onPressedFunc: () {
+          Navigator.pop(context);
+        },
+      ),
       body: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -28,6 +36,14 @@ class CheckOutScreen extends StatelessWidget {
           Expanded(flex: 1, child: PaymentMethod()),
           Expanded(flex: 2, child: PaymentDetails()),
         ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: CustomButton(
+        content: 'Place Order',
+        hasIcon: false,
+        onPressedFunc: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const CheckOutScreen()));
+        },
       ),
     );
   }
