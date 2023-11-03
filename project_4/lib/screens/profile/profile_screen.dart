@@ -4,9 +4,14 @@ import 'package:project_4/widgets/custom_app_bar.dart';
 import 'widgets/profile_text_field.dart';
 import 'widgets/user_avatar.dart';
 
-class ProfileScreen extends StatelessWidget {
-  ProfileScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController nameController = TextEditingController(text: "John Smith");
   TextEditingController phoneController = TextEditingController(text: "5647 89532 1478");
   TextEditingController emailController = TextEditingController(text: "johnsmith@gmail.com");

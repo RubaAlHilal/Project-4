@@ -18,8 +18,10 @@ class CheckOutScreen extends StatelessWidget {
         children: [
           TitleRow(content: "Your Order will be Delivered To"),
           SizedBox(height: 25),
-          //TODO: FIX
-          Expanded(flex: 1, child: AddressRow()),
+          Expanded(
+            flex: 1,
+            child: AddressRow(),
+          ),
           SizedBox(height: 25),
           TitleRow(content: "Payment Method"),
           SizedBox(height: 10),

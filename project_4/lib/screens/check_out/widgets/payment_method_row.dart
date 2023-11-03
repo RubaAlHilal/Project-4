@@ -23,7 +23,7 @@ class PaymentMethodRow extends StatelessWidget {
           scale: 1.4,
           child: Radio(
             value: 0,
-            groupValue: [],
+            groupValue: const [],
             onChanged: (value) {},
           ),
         ),

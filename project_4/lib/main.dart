@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'screens/profile/profile_screen.dart';
+import 'package:project_4/screens/check_out/check_out_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,9 +10,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProfileScreen(),
+      home: CheckOutScreen(),
     );
   }
 }
