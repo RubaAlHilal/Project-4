@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_4/data/constants.dart';
+import 'package:project_4/screens/check_out/widgets/payment_details_cost.dart';
 
 class PaymentDetails extends StatelessWidget {
   const PaymentDetails({Key? key}) : super(key: key);
@@ -31,30 +31,6 @@ class PaymentDetails extends StatelessWidget {
           trailingText: "10,000.00",
         ),
       ],
-    );
-  }
-}
-
-class PaymentDetailsCost extends StatelessWidget {
-  const PaymentDetailsCost({
-    super.key,
-    required this.leadingText,
-    required this.trailingText,
-    this.color,
-  });
-
-  final String leadingText;
-  final String trailingText;
-  final Color? color;
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Text(
-        leadingText,
-        style: TextStyle(fontSize: 16, color: color ?? Colors.black),
-      ),
-      trailing: Text("$rupeeIcon$trailingText",
-          style: TextStyle(fontSize: 16, color: color ?? Colors.black)),
     );
   }
 }

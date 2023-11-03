@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/custom_app_bar.dart';
 import 'widgets/my_order_list.dart';
-import 'widgets/payment_details.dart';
+import '../../widgets/payment_details.dart';
 
 class OrderScreen extends StatelessWidget {
   const OrderScreen({Key? key}) : super(key: key);
