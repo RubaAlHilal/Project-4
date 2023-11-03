@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_4/screens/check_out/check_out_screen.dart';
+
+import 'screens/filter/filter_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,7 +13,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CheckOutScreen(),
+      home: FilterScreen(),
     );
   }
 }
