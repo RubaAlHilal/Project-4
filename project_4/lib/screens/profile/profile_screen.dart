@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project_4/screens/NavigationBar/navigation_bar_widget.dart';
 import 'package:project_4/widgets/custom_app_bar.dart';
+import 'package:project_4/widgets/custom_button.dart';
 
 import 'widgets/profile_text_field.dart';
 import 'widgets/user_avatar.dart';
@@ -21,7 +23,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: customAppBar(title: "My Profile", context: context, hasAction: false),
+      appBar: customAppBar(
+          title: "My Profile",
+          context: context,
+          hasAction: false,
+          onPressedFunc: () {
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => const BottomNavBar()));
+          }),
       body: Column(
         children: [
           const SizedBox(height: 8),
@@ -50,6 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     label: "Password",
                     isPassword: true,
                     inputType: TextInputType.text),
+                CustomButton(content: "Update", hasIcon: false, onPressedFunc: () {})
               ],
             ),
           )
