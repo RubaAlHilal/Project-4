@@ -17,7 +17,10 @@ class PaymentDetailsCost extends StatelessWidget {
     return ListTile(
       leading: Text(
         leadingText,
-        style: TextStyle(fontSize: 16, color: color ?? Colors.black),
+        style: TextStyle(
+            fontSize: 16,
+            color: color ?? Colors.black,
+            fontWeight: leadingText.contains("Grand") ? FontWeight.bold : FontWeight.normal),
       ),
       trailing: Text(!trailingText.contains("Free") ? "$rupeeIcon$trailingText" : trailingText,
           style: TextStyle(
