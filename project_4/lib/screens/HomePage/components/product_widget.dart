@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_4/data/global_data.dart';
 import 'package:project_4/models/watch_model.dart';
+import 'package:project_4/screens/ProductDetailsPage/components/method/add_item_to_list_method.dart';
 import 'package:project_4/screens/ProductDetailsPage/product_details_screen.dart';
 import 'package:project_4/screens/order/order_screen.dart';
 import 'package:project_4/widgets/circle_icon.dart';
@@ -66,23 +66,13 @@ class ProductWidget extends StatelessWidget {
             child: CircleIcon(
               iconData: Icons.add,
               onPressedFunc: () {
-                if (!cartList.contains(watch)) {
-                  cartList.add(watch);
-                  watch.count = watch.count + 1;
-                  grandTotal.value += watch.price;
-
-                  // context
-                  //     .findAncestorStateOfType<OrderScreenState>()!
-                  //     .setState(() {});
-                } else {
-                  watch.count = watch.count + 1;
-                  grandTotal.value += watch.price;
-                }
+                addItemToCart(watch);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => OrderScreen(
                       watch: watch,
+                      isBottomNavBar: false,
                     ),
                   ),
                 );

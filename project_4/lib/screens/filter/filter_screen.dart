@@ -59,7 +59,7 @@ class FilterScreen extends StatelessWidget {
               thumbColor: Colors.white,
               activeTrackColor: Colors.orangeAccent,
             ),
-            child: FilterRangeSlider(),
+            child: const FilterRangeSlider(),
           ),
         ],
       ),

@@ -15,14 +15,15 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-  // @override
-  // void initState() {
-  //   for (var element in watches) {
-  //     watchesList.add(Watch.fromJson(element));
-  //
-  //   }
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    if (watchesList.isEmpty) {
+      for (var element in watches) {
+        watchesList.add(Watch.fromJson(element));
+      }
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

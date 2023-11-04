@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_4/data/constants.dart';
-import 'package:project_4/data/global_data.dart';
 
 class ItemInformation extends StatelessWidget {
   const ItemInformation({

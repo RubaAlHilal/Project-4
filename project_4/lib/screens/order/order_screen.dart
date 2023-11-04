@@ -12,11 +12,12 @@ import 'widgets/my_order_list.dart';
 import '../../widgets/payment_details.dart';
 
 class OrderScreen extends StatefulWidget {
-  const OrderScreen({Key? key, this.watch}) : super(key: key);
+  const OrderScreen({Key? key, this.watch, required this.isBottomNavBar}) : super(key: key);
   final Watch? watch;
 
   @override
   State<OrderScreen> createState() => OrderScreenState();
+  final bool isBottomNavBar;
 }
 
 class OrderScreenState extends State<OrderScreen> {
@@ -28,18 +29,32 @@ class OrderScreenState extends State<OrderScreen> {
           context: context,
           hasAction: true,
           onPressedFunc: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => const BottomNavBar()));
+            if (widget.isBottomNavBar) {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => const BottomNavBar()));
+            } else {
+              Navigator.pop(context);
+            }
           }),
       body: WillPopScope(
         onWillPop: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => const BottomNavBar()));
+          if (widget.isBottomNavBar) {
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => const BottomNavBar()));
+          } else {
+            Navigator.pop(context);
+          }
+
           return Future.value(true);
         },
         child: Column(
           children: [
-            Expanded(flex: 3, child: MyOrderList(watch: watchesList[0])),
+            Expanded(
+              flex: 3,
+              child: (cartList.isNotEmpty)
+                  ? const MyOrderList()
+                  : Image.asset("assets/images/cart-empty.png"),
+            ),
             const Expanded(flex: 2, child: PaymentDetails()),
           ],
         ),
@@ -49,7 +64,13 @@ class OrderScreenState extends State<OrderScreen> {
         content: 'Checkout',
         hasIcon: false,
         onPressedFunc: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const CheckOutScreen()));
+          if (cartList.isNotEmpty) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => const CheckOutScreen()));
+          } else {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text("Your cart is empty")));
+          }
         },
       ),
     );

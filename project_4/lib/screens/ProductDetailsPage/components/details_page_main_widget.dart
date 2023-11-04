@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:project_4/models/watch_model.dart';
 import 'package:project_4/widgets/circle_icon.dart';
+import '../product_details_screen.dart';
 import 'product_background_widget.dart';
 
-class DetailsPageMainWidget extends StatelessWidget {
+class DetailsPageMainWidget extends StatefulWidget {
   const DetailsPageMainWidget({
     super.key,
     required this.watch,
   });
   final Watch watch;
+
+  @override
+  State<DetailsPageMainWidget> createState() => _DetailsPageMainWidgetState();
+}
+
+class _DetailsPageMainWidgetState extends State<DetailsPageMainWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         ProductBackgroundWidget(
-          watch: watch,
+          watch: widget.watch,
         ),
         Padding(
           padding: const EdgeInsets.all(25),
@@ -30,41 +37,54 @@ class DetailsPageMainWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            watch.name,
+                            widget.watch.name,
                             style: const TextStyle(
-                                fontSize: 24,
-                                color: Color(0xff294475),
-                                fontFamily: 'DMSerifText'),
+                                fontSize: 24, color: Color(0xff294475), fontFamily: 'DMSerifText'),
                           ),
                           Text(
-                            "₹${watch.price}",
-                            style: const TextStyle(
-                                fontSize: 24, fontFamily: 'DMSerifText'),
+                            "₹${widget.watch.price}",
+                            style: const TextStyle(fontSize: 24, fontFamily: 'DMSerifText'),
                           ),
                         ],
                       ),
                       const Spacer(),
-                      CircleIcon(iconData: Icons.remove, onPressedFunc: () {}),
-                      const SizedBox(
-                        width: 8,
+                      Row(
+                        children: [
+                          CircleIcon(
+                              iconData: Icons.remove,
+                              onPressedFunc: () {
+                                if (count == 1) {
+                                } else {
+                                  count--;
+                                }
+                                setState(() {});
+                              }),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            //quantity
+                            "$count",
+                            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          CircleIcon(
+                              iconData: Icons.add,
+                              onPressedFunc: () {
+                                count++;
+                                setState(() {});
+                              }),
+                        ],
                       ),
-                      const Text(
-                        //quantity
-                        "1",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w500),
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      CircleIcon(iconData: Icons.add, onPressedFunc: () {}),
                     ],
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   Text(
-                    watch.description,
+                    widget.watch.description,
                     overflow: TextOverflow.clip,
                     style: const TextStyle(fontSize: 16, color: Colors.grey),
                   ),

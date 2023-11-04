@@ -1,37 +1,56 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:project_4/data/global_data.dart';
+import 'package:project_4/models/watch_model.dart';
 import 'package:project_4/widgets/circle_icon.dart';
 
-class AddRemoveItem extends StatelessWidget {
+import 'my_order_list.dart';
+
+class AddRemoveItem extends StatefulWidget {
   const AddRemoveItem({
     super.key,
-    required this.price,
+    this.price,
+    required this.watch,
   });
 
-  final double price;
+  final double? price;
+  final Watch watch;
 
+  @override
+  State<AddRemoveItem> createState() => _AddRemoveItemState();
+}
+
+class _AddRemoveItemState extends State<AddRemoveItem> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        //TODO: ITEM COUNT
         CircleIcon(
             iconData: Icons.remove,
             onPressedFunc: () {
-              itemsTotal.value -= price;
-              grandTotal.value = (itemsTotal.value - discount);
+              if (widget.watch.count == 1) {
+                cartList.remove(widget.watch);
+                itemsTotal.value -= widget.watch.price;
+                grandTotal.value = (itemsTotal.value - discount);
+              } else {
+                widget.watch.count = widget.watch.count - 1;
+                itemsTotal.value -= widget.watch.price;
+                grandTotal.value = (itemsTotal.value - discount);
+              }
+              setState(() {});
+              context.findAncestorStateOfType<MyOrderListState>()!.setState(() {});
             }),
-        const Text(
-          "1",
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+        Text(
+          "${widget.watch.count}",
+          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
         ),
         CircleIcon(
             iconData: Icons.add,
             onPressedFunc: () {
-              itemsTotal.value += price;
+              itemsTotal.value += widget.watch.price;
               grandTotal.value = (itemsTotal.value - discount);
+              widget.watch.count = widget.watch.count + 1;
+              setState(() {});
+              context.findAncestorStateOfType<MyOrderListState>()!.setState(() {});
             }),
       ],
     );

@@ -68,7 +68,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         onPressedFunc: () {
                           if (nameController.text.isEmpty) {
                             ScaffoldMessenger.of(context)
-                                .showSnackBar(SnackBar(content: Text("Please ")));
+                                .showSnackBar(const SnackBar(content: Text("Please ")));
                           }
                         })
                   ],
