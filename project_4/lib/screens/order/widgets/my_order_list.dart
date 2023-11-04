@@ -5,7 +5,6 @@ import 'package:project_4/models/watch_model.dart';
 import 'package:project_4/screens/order/order_screen.dart';
 import 'package:project_4/widgets/circle_icon.dart';
 
-
 class MyOrderList extends StatefulWidget {
   const MyOrderList({Key? key, required this.watch}) : super(key: key);
 
@@ -15,7 +14,6 @@ class MyOrderList extends StatefulWidget {
   State<MyOrderList> createState() => _MyOrderListState();
 }
 
-
 class _MyOrderListState extends State<MyOrderList> {
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,6 @@ class _MyOrderListState extends State<MyOrderList> {
       padding: const EdgeInsets.only(top: 12.0),
       child: ListView.builder(
         shrinkWrap: true,
-
         itemCount: cartList.length,
         itemBuilder: (context, index) {
           return Padding(
@@ -65,9 +62,7 @@ class _MyOrderListState extends State<MyOrderList> {
                       Text(
                         cartList[index].name,
                         style: const TextStyle(
-                            color: Color(0xFF233B66),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500),
+                            color: Color(0xFF233B66), fontSize: 18, fontWeight: FontWeight.w500),
                       ),
                       const SizedBox(height: 12),
                       Text(
@@ -77,8 +72,7 @@ class _MyOrderListState extends State<MyOrderList> {
                       const SizedBox(height: 12),
                       Text(
                         "$rupeeIcon${cartList[index].price}",
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                     ],
                   ),
@@ -90,47 +84,36 @@ class _MyOrderListState extends State<MyOrderList> {
                       CircleIcon(
                           iconData: Icons.add,
                           onPressedFunc: () {
-                            widget.watch.count = widget.watch.count! + 1;
-                            grandTotal += widget.watch.price;
+                            widget.watch.count = widget.watch.count + 1;
+                            grandTotal.value += widget.watch.price;
 
-                            context
-                                .findAncestorStateOfType<OrderScreenState>()!
-                                .setState(() {});
+                            context.findAncestorStateOfType<OrderScreenState>()!.setState(() {});
                           }),
                       Text(
                         cartList[index].count.toString(),
-                        style: const TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.w400),
+                        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
                       ),
                       CircleIcon(
                         iconData: Icons.remove,
                         onPressedFunc: () {
-                          if (widget.watch.count! > 1) {
-                            widget.watch.count = widget.watch.count! - 1;
-                            grandTotal -= widget.watch.price;
+                          if (widget.watch.count > 1) {
+                            widget.watch.count = widget.watch.count - 1;
+                            grandTotal.value -= widget.watch.price;
                             setState(() {});
-                          } else if (widget.watch.count! == 1) {
+                          } else if (widget.watch.count == 1) {
                             widget.watch.count = 0;
-                            grandTotal = grandTotal -
-                                widget.watch.price * widget.watch.count!;
+                            grandTotal.value =
+                                grandTotal.value - widget.watch.price * widget.watch.count;
                             cartList.remove(widget.watch);
                             //state update
-                            context
-                                .findAncestorStateOfType<OrderScreenState>()!
-                                .setState(() {});
+                            context.findAncestorStateOfType<OrderScreenState>()!.setState(() {});
                           }
                         },
                       ),
                     ],
-
                   ),
-                  Expanded(
-                      flex: 1,
-                      child: AddRemoveItem(
-                        price: price[index],
-                      ))
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },

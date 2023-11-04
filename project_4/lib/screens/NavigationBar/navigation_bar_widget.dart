@@ -5,6 +5,10 @@ import 'package:project_4/screens/SearchPage/search_screen.dart';
 import 'package:project_4/screens/order/order_screen.dart';
 import 'package:project_4/screens/profile/profile_screen.dart';
 
+import '../../data/global_data.dart';
+import '../../data/watch_data_set.dart';
+import '../../models/watch_model.dart';
+
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
 
@@ -13,6 +17,15 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMixin {
+  @override
+  void initState() {
+    for (var element in watches) {
+      watchesList.add(Watch.fromJson(element));
+    }
+    print("object");
+    super.initState();
+  }
+
   List<Widget> screens = [
     const HomePageScreen(),
     const SearchScreen(),

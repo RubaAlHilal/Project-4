@@ -15,14 +15,14 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-  @override
-  void initState() {
-    for (var element in watches) {
-      watchesList.add(Watch.fromJson(element));
-      
-    }
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   for (var element in watches) {
+  //     watchesList.add(Watch.fromJson(element));
+  //
+  //   }
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +36,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
           children: [
             Text(
               "Hello",
-              style: TextStyle(
-                  fontSize: 28,
-                  color: Color(0xff294475),
-                  fontFamily: 'DMSerifText'),
+              style: TextStyle(fontSize: 28, color: Color(0xff294475), fontFamily: 'DMSerifText'),
             ),
             Text(
               "Choose Your Top Brands",
