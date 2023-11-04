@@ -28,7 +28,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: homeAppBarWidget(),
+      appBar: homeAppBarWidget(context: context),
       body: const Padding(
         padding: EdgeInsets.all(18),
         child: Column(

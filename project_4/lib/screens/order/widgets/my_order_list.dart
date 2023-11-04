@@ -5,6 +5,7 @@ import 'package:project_4/models/watch_model.dart';
 import 'package:project_4/screens/order/order_screen.dart';
 import 'package:project_4/widgets/circle_icon.dart';
 
+
 class MyOrderList extends StatefulWidget {
   const MyOrderList({Key? key, required this.watch}) : super(key: key);
 
@@ -14,6 +15,7 @@ class MyOrderList extends StatefulWidget {
   State<MyOrderList> createState() => _MyOrderListState();
 }
 
+
 class _MyOrderListState extends State<MyOrderList> {
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class _MyOrderListState extends State<MyOrderList> {
       padding: const EdgeInsets.only(top: 12.0),
       child: ListView.builder(
         shrinkWrap: true,
+
         itemCount: cartList.length,
         itemBuilder: (context, index) {
           return Padding(
@@ -119,9 +122,15 @@ class _MyOrderListState extends State<MyOrderList> {
                         },
                       ),
                     ],
+
                   ),
-                )
-              ],
+                  Expanded(
+                      flex: 1,
+                      child: AddRemoveItem(
+                        price: price[index],
+                      ))
+                ],
+              ),
             ),
           );
         },

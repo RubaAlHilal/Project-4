@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../models/user_model.dart';
 import '../models/watch_model.dart';
 
@@ -9,8 +11,14 @@ List<Watch> watchesList = [];
 
 List<Watch> cartList = [];
 
+
+
+ValueNotifier<double> grandTotal = ValueNotifier(0.0);
+ValueNotifier<double> itemsTotal = ValueNotifier(0.0);
+
+
 double discount = 0;
-num grandTotal = 0;
+
 // double itemsTotal = 0;
 
 void calculateGlobalPrice() {

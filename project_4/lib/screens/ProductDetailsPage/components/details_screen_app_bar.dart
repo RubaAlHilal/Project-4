@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 
-PreferredSizeWidget detailsScreenAppBar() {
+PreferredSizeWidget detailsScreenAppBar({required BuildContext context}) {
   return AppBar(
       centerTitle: true,
       backgroundColor: Colors.white,
       elevation: 0,
-      leading: const Icon(
-        Icons.menu,
-        color: Colors.black,
-        size: 25,
-      ),
+      leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.black, size: 20),
+          onPressed: () {
+            Navigator.pop(context);
+          }),
+
+      // Icon(
+      //   Icons.arrow_back_ios_rounded,
+      //   color: Colors.black,
+      //   size: 25,
+      // ),
       actions: const [
         Icon(
           Icons.shopping_basket_outlined,
