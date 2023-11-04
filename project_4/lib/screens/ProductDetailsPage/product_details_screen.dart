@@ -17,12 +17,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: CustomButton(
-        onPressedFunc: () {},
-        content: "Add to Cart",
-        hasIcon: true,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 32.0),
+        child: CustomButton(
+          onPressedFunc: () {},
+          content: "Add to Cart",
+          hasIcon: true,
+        ),
       ),
-      appBar: detailsScreenAppBar(),
+      appBar: detailsScreenAppBar(context: context),
       body: DetailsPageMainWidget(watch: widget.watch),
     );
   }

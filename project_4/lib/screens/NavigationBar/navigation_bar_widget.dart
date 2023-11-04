@@ -35,6 +35,7 @@ class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMix
     );
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBody: true,
       body: screens[_selectedTab.index],
       bottomNavigationBar: Padding(
