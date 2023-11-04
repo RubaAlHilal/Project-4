@@ -1,38 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:project_4/data/constants.dart';
+import 'package:project_4/data/global_data.dart';
+import 'package:project_4/models/watch_model.dart';
+import 'package:project_4/screens/order/order_screen.dart';
 import 'package:project_4/widgets/circle_icon.dart';
 
-class MyOrderList extends StatelessWidget {
-  const MyOrderList({Key? key}) : super(key: key);
+class MyOrderList extends StatefulWidget {
+  const MyOrderList({Key? key, required this.watch}) : super(key: key);
+
+  final Watch watch;
 
   @override
-  Widget build(BuildContext context) {
-    List<String> images = [
-      "assets/images/my_order_watch1.png",
-      "assets/images/my_order_watch2.png",
-      "assets/images/my_order_watch3.png",
-    ];
-    List<String> names = [
-      "Zeitwerk Date",
-      "Chronograph Radio",
-      "Eco-Drive Baracelet",
-    ];
-    List<String> description = [
-      "It is a long established fact that a reader will be.",
-      "It is a long established fact that a reader will be.",
-      "It is a long established fact that a reader will be.",
-    ];
-    List<double> price = [
-      3050,
-      3100,
-      4699,
-    ];
+  State<MyOrderList> createState() => _MyOrderListState();
+}
 
+class _MyOrderListState extends State<MyOrderList> {
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 12.0),
       child: ListView.builder(
         shrinkWrap: true,
-        itemCount: images.length,
+        itemCount: cartList.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -59,7 +48,7 @@ class MyOrderList extends StatelessWidget {
                           top: -23,
                           child: Image.asset(
                             fit: BoxFit.cover,
-                            images[index],
+                            cartList[index].image,
                             scale: 5,
                           ),
                         ),
@@ -71,19 +60,22 @@ class MyOrderList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        names[index],
+                        cartList[index].name,
                         style: const TextStyle(
-                            color: Color(0xFF233B66), fontSize: 18, fontWeight: FontWeight.w500),
+                            color: Color(0xFF233B66),
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500),
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        description[index],
+                        cartList[index].description,
                         style: const TextStyle(color: Color(0xFF847F7F)),
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        "$rupeeIcon${price[index]}",
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        "$rupeeIcon${cartList[index].price}",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                     ],
                   ),
@@ -92,12 +84,40 @@ class MyOrderList extends StatelessWidget {
                   flex: 1,
                   child: Column(
                     children: [
-                      CircleIcon(iconData: Icons.remove, onPressedFunc: () {}),
-                      const Text(
-                        "1",
-                        style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+                      CircleIcon(
+                          iconData: Icons.add,
+                          onPressedFunc: () {
+                            widget.watch.count = widget.watch.count! + 1;
+                            grandTotal += widget.watch.price;
+
+                            context
+                                .findAncestorStateOfType<_MyOrderListState>()!
+                                .setState(() {});
+                          }),
+                      Text(
+                        cartList[index].count.toString(),
+                        style: const TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.w400),
                       ),
-                      CircleIcon(iconData: Icons.add, onPressedFunc: () {}),
+                      CircleIcon(
+                        iconData: Icons.remove,
+                        onPressedFunc: () {
+                          if (widget.watch.count! > 1) {
+                            widget.watch.count = widget.watch.count! - 1;
+                            grandTotal -= widget.watch.price;
+                            setState(() {});
+                          } else if (widget.watch.count! == 1) {
+                            widget.watch.count = 0;
+                            grandTotal = grandTotal -
+                                widget.watch.price * widget.watch.count!;
+                            cartList.remove(widget.watch);
+                            //state update
+                            context
+                                .findAncestorStateOfType<_MyOrderListState>()!
+                                .setState(() {});
+                          }
+                        },
+                      ),
                     ],
                   ),
                 )

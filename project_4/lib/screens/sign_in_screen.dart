@@ -102,7 +102,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20))),
                         minimumSize: const Size(400, 50),
-                        backgroundColor: Color.fromARGB(255, 250, 249, 249)),
+                        backgroundColor: const Color.fromARGB(255, 250, 249, 249)),
                     onPressed: () {},
                     child: const Text(
                       'Sign in with Google',

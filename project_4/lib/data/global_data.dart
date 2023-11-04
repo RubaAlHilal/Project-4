@@ -7,8 +7,15 @@ List<User> usersList = [];
 
 List<Watch> watchesList = [];
 
-// List<Watch> cartItems = [];
+List<Watch> cartList = [];
 
-double grandTotal = 0;
-double itemsTotal = 0;
 double discount = 0;
+num grandTotal = 0;
+// double itemsTotal = 0;
+
+void calculateGlobalPrice() {
+  grandTotal = 0;
+  for (var element in cartList) {
+    grandTotal += element.itemsTotal * element.price;
+  }
+}

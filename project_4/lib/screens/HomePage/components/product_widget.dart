@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:project_4/data/global_data.dart';
 import 'package:project_4/models/watch_model.dart';
 import 'package:project_4/screens/ProductDetailsPage/product_details_screen.dart';
+import 'package:project_4/screens/order/order_screen.dart';
 import 'package:project_4/widgets/circle_icon.dart';
 
 class ProductWidget extends StatelessWidget {
@@ -49,23 +51,41 @@ class ProductWidget extends StatelessWidget {
               children: [
                 Text(
                   watch.name,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 ),
                 Text(
                   '₹${watch.price}',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 )
               ],
             ),
           ),
           Positioned(
-              top: 300,
-              left: 95,
-              child: InkWell(
-                  //add to cart button
-                  onTap: () {},
-                  child:
-                      CircleIcon(iconData: Icons.add, onPressedFunc: () {}))),
+            top: 300,
+            left: 95,
+            child: CircleIcon(
+              iconData: Icons.add,
+              onPressedFunc: () {
+                if (!cartList.contains(watch)) {
+                  cartList.add(watch);
+                  watch.count = watch.count! + 1;
+                  grandTotal += watch.price;
+
+                  // context
+                  //     .findAncestorStateOfType<DeliverSectionState>()!
+                  //     .setState(() {});
+                }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OrderScreen(
+                      watch: watch,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
