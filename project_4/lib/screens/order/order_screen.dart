@@ -44,7 +44,6 @@ class OrderScreenState extends State<OrderScreen> {
           } else {
             Navigator.pop(context);
           }
-
           return Future.value(true);
         },
         child: Column(
@@ -65,8 +64,13 @@ class OrderScreenState extends State<OrderScreen> {
         hasIcon: false,
         onPressedFunc: () {
           if (cartList.isNotEmpty) {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const CheckOutScreen()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const CheckOutScreen()))
+                .then((value) {
+              cartList.clear();
+              itemsTotal.value = 0;
+              grandTotal.value = 0;
+              setState(() {});
+            });
           } else {
             ScaffoldMessenger.of(context)
                 .showSnackBar(const SnackBar(content: Text("Your cart is empty")));

@@ -39,6 +39,7 @@ class MyOrderListState extends State<MyOrderList> {
               grandTotal.value = itemsTotal.value - discount;
               cartList[index].count = 0;
               cartList.remove(cartList[index]);
+              context.findAncestorStateOfType<MyOrderListState>()!.setState(() {});
               context.findAncestorStateOfType<OrderScreenState>()!.setState(() {});
             },
             child: Padding(
