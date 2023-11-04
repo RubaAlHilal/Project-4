@@ -91,7 +91,7 @@ class _MyOrderListState extends State<MyOrderList> {
                             grandTotal += widget.watch.price;
 
                             context
-                                .findAncestorStateOfType<_MyOrderListState>()!
+                                .findAncestorStateOfType<OrderScreenState>()!
                                 .setState(() {});
                           }),
                       Text(
@@ -113,7 +113,7 @@ class _MyOrderListState extends State<MyOrderList> {
                             cartList.remove(widget.watch);
                             //state update
                             context
-                                .findAncestorStateOfType<_MyOrderListState>()!
+                                .findAncestorStateOfType<OrderScreenState>()!
                                 .setState(() {});
                           }
                         },

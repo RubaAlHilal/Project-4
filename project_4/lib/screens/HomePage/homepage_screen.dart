@@ -19,6 +19,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   void initState() {
     for (var element in watches) {
       watchesList.add(Watch.fromJson(element));
+      
     }
     super.initState();
   }

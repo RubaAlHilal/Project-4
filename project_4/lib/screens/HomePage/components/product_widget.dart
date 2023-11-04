@@ -51,11 +51,13 @@ class ProductWidget extends StatelessWidget {
               children: [
                 Text(
                   watch.name,
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w500),
                 ),
                 Text(
                   '₹${watch.price}',
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w500),
                 )
               ],
             ),
@@ -68,12 +70,15 @@ class ProductWidget extends StatelessWidget {
               onPressedFunc: () {
                 if (!cartList.contains(watch)) {
                   cartList.add(watch);
-                  watch.count = watch.count! + 1;
+                  watch.count = watch.count + 1;
                   grandTotal += watch.price;
 
                   // context
-                  //     .findAncestorStateOfType<DeliverSectionState>()!
+                  //     .findAncestorStateOfType<OrderScreenState>()!
                   //     .setState(() {});
+                } else {
+                  watch.count = watch.count + 1;
+                  grandTotal += watch.price;
                 }
                 Navigator.push(
                   context,

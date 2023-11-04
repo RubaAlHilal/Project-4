@@ -1,7 +1,7 @@
 class Watch {
   final String name, description, image;
   final double price;
-  int? count;
+  num count = 1;
   num itemsTotal = 0;
 
   Watch(
@@ -9,7 +9,7 @@ class Watch {
       required this.price,
       required this.description,
       required this.image,
-      this.count});
+      required this.count});
 
   factory Watch.fromJson(Map json) {
     return Watch(
