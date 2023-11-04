@@ -26,7 +26,7 @@ PreferredSizeWidget detailsScreenAppBar({required BuildContext context}) {
           width: 12,
         )
       ],
-      title: Text(
+      title: const Text(
         "product name",
         style: TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
       ));
