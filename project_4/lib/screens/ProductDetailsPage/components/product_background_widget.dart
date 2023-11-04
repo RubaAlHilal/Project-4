@@ -25,12 +25,11 @@ class ProductBackgroundWidget extends StatelessWidget {
               color: Color(0xfff9f8f8)),
         ),
         Positioned(
-          left: 100,
-          child: Image.asset(
-            watch.image,
-            height: 415,
-          ),
-        ),
+            left: 100,
+            child: Image.asset(
+              watch.image,
+              height: 415,
+            )),
       ],
     );
   }

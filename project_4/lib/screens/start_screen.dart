@@ -20,20 +20,20 @@ class _StartScreenState extends State<StartScreen> {
                 image: DecorationImage(
                     image: AssetImage('assets/images/watch-start.jpeg'), fit: BoxFit.cover)),
           ),
-          Positioned(
+          const Positioned(
             top: 100,
             child: Padding(
               padding: EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Universal Timekepers',
+                  Text('Universal Timekepers',
                       style: TextStyle(
                           color: Colors.white, fontSize: 30, fontFamily: 'PlayfairDisplay')),
-                  const Text('of the World',
+                  Text('of the World',
                       style: TextStyle(
                           color: Colors.white, fontSize: 30, fontFamily: 'PlayfairDisplay')),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 8.0),
                     child: Text(
                       'it is a long established fact that a reader will',
@@ -42,7 +42,7 @@ class _StartScreenState extends State<StartScreen> {
                       ),
                     ),
                   ),
-                  const Text(
+                  Text(
                     'be distracted by the readable content',
                     style: TextStyle(
                       color: Colors.white,
@@ -71,7 +71,7 @@ class _StartScreenState extends State<StartScreen> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SignInScreen(),
+                    builder: (context) => const SignInScreen(),
                   ));
             },
             child: const Text(
