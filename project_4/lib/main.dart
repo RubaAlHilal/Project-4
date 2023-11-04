@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:project_4/screens/NavigationBar/navigation_bar_widget.dart';
+
+import 'package:project_4/place_holder.dart';
+
 
 void main() {
   runApp(const MainApp());
